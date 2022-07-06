@@ -11,20 +11,9 @@ Amplify.configure(awsconfig);
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1>
+          AppSync Examples - Edit <code>src/App.js</code> and save to reload.
+        </h1>
       <DoMutation/>
       <DoSubscription/>
     </div>
@@ -61,13 +50,6 @@ class DoSubscription extends React.Component {
     this.handleSubscription = this.handleSubscription.bind(this);
   }
   handleSubscription(){
-    //const publishChannel = { name: "My first Channel", data: "{\"hello\":20}" };
-
-    // API.graphql(graphqlOperation(publish, publishChannel))
-    // .then(data => console.log(data))
-    // .catch(err => console.log(err));
-
-
     const subscriptionObject = API.graphql(
       graphqlOperation(subscribe)
     ).subscribe({
