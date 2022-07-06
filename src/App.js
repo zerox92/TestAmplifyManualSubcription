@@ -50,8 +50,10 @@ class DoSubscription extends React.Component {
     this.handleSubscription = this.handleSubscription.bind(this);
   }
   handleSubscription(){
+    const publishChannel = { name: "My first Channel", data: "{\"hello\":20}" };
+
     const subscriptionObject = API.graphql(
-      graphqlOperation(subscribe)
+      graphqlOperation(subscribe, publishChannel)
     ).subscribe({
         next: (todoData) => {
           console.log(todoData);
