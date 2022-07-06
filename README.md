@@ -10,6 +10,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Edit the `App.js` under `src` folder to make changes according to your schema.
 
+Note: Make sure you drag the `aws-exports.js` into the `./src` directory of your project.
+
 In the project directory, you can run:
 
 ### `npm start`
