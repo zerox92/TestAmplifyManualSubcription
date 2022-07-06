@@ -11,4 +11,4 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-![APP UI](./README_Images/UI.jpg?raw=true "Title")
+![APP UI](./README_Images/UI.png?raw=true "Title")
