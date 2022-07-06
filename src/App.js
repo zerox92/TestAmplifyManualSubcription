@@ -4,6 +4,7 @@ import './App.css';
 import { Amplify, API, graphqlOperation } from 'aws-amplify';
 import awsconfig from './aws-exports';
 import { publish } from './graphql/mutations';
+import { subscribe } from './graphql/subscriptions';
 Amplify.configure(awsconfig);
 
 
@@ -25,6 +26,7 @@ function App() {
         </a>
       </header>
       <DoMutation/>
+      <DoSubscription/>
     </div>
   );
 }
@@ -32,12 +34,12 @@ function App() {
 class DoMutation extends React.Component {
   constructor(props) {
     super(props);
-    this.handleRetrieveCurrentSession = this.handleRetrieveCurrentSession.bind(this);
+    this.handleMutation = this.handleMutation.bind(this);
   }
-  handleRetrieveCurrentSession(){
+  handleMutation(){
     const publishChannel = { name: "My first Channel", data: "{\"hello\":20}" };
 
-    API.graphql(graphqlOperation(publish, {input: publishChannel}))
+    API.graphql(graphqlOperation(publish, publishChannel))
     .then(data => console.log(data))
     .catch(err => console.log(err));
 
@@ -47,7 +49,43 @@ class DoMutation extends React.Component {
     return (
     <div className="Amplify-component">
       <h4>Do Mutation</h4>
-      <button onClick={this.handleRetrieveCurrentSession}>Check Console</button>
+      <button onClick={this.handleMutation}>Check Console</button>
+    </div>
+    );
+  }
+}
+
+class DoSubscription extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubscription = this.handleSubscription.bind(this);
+  }
+  handleSubscription(){
+    //const publishChannel = { name: "My first Channel", data: "{\"hello\":20}" };
+
+    // API.graphql(graphqlOperation(publish, publishChannel))
+    // .then(data => console.log(data))
+    // .catch(err => console.log(err));
+
+
+    const subscriptionObject = API.graphql(
+      graphqlOperation(subscribe)
+    ).subscribe({
+        next: (todoData) => {
+          console.log(todoData);
+          // Do something with the data
+        }
+    });
+
+    console.log(subscriptionObject);
+
+  }
+
+  render() {
+    return (
+    <div className="Amplify-component">
+      <h4>Do Subscription</h4>
+      <button onClick={this.handleSubscription}>Check Console</button>
     </div>
     );
   }
