@@ -2,7 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Create a react app and run the following commands to get started:
+
+1) `amplify init` ## Not required if existing api resource is used.
+2) `amplify add codegen --apiId <api-id>`
+3) `amplify codegen`
+
+Edit the `App.js` under `src` folder to make changes according to your schema.
 
 In the project directory, you can run:
 
